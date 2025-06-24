@@ -177,11 +177,24 @@ body {
 }
 #photo-finale {
   position: relative;
-  top: 50px; 
+  top: 175px;
+  opacity: 0;
+  transition: opacity 1.5s ease-in;
+}
+
+#photo-finale.show {
+  opacity: 1;
 }
 
 /* SAFE TEXT MOVER - PUT THIS LAST IN YOUR CSS */
 #photo-finale > .terminal-line:last-child {
   position: relative;
-  top: 130px; /* Adjust this number to move it down */
+  top: 10px; /* Adjust this number to move it down */
 }
+
+/* ===== MESSAGE TIMING ADJUSTMENTS ===== */
+/* Slower fade-in for messages */
+.terminal-line {
+  transition: opacity 1.5s ease-out, transform 1.5s ease-out !important;
+}
+
