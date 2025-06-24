@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elyon's Birthday</title>
+  <link rel="stylesheet" href="styles/style.css"/>
+</head>
+<body>
+  <!-- Envelope Screen -->
+  <div id="envelope-screen" class="active-screen">
+    <div class="envelope-wrapper">
+      <div class="envelope">
+        <div class="card">
+          <div class="glow"></div>
+          <h2 class="terminal-text">&gt; New Message</h2>
+          <p class="terminal-text">From: Tanto</p>
+          <button id="open-btn" class="terminal-btn">Click to Open</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Terminal Screen -->
+  <div id="terminal-screen">
+    <div id="particles-js"></div>
+    <img src="https://i.postimg.cc/1tjNkT7Z/aff47962-93de-4887-950c-e95af7a6223a-removebg-preview.png" 
+         alt="Gift" class="gift-img">
+
+    <div class="container">
+      <!-- Message Sequence -->
+      <div id="message-sequence">
+        <p class="terminal-line hidden">&gt; So I don’t really have a perfect line or speech 😄</p>
+        <p class="terminal-line hidden">&gt; I just want you to know I really appreciate you</p>
+        <p class="terminal-line hidden">&gt; And I wish you all the best — you deserve nothing less</p>
+        <p class="terminal-line hidden">&gt; Happy birthday, Elyon</p>
+        <p class="terminal-line hidden">&gt; To greater heights 🥂</p>
+      </div>
+
+      <!-- Photo Finale -->
+      <div id="photo-finale" class="hidden">
+        <img src="https://i.postimg.cc/d3m6GH7b/Screenshot-20250624-214648.png" alt="Teddy Gift" class="teddy-img">
+        <p class="terminal-line">&gt; Made with &lt;3 by Tanto</p>
+      </div>
+    </div>
+  </div>
+
+  <audio id="bgMusic" src="https://cdn.pixabay.com/audio/2022/12/11/audio_f4e9951d75.mp3" preload="auto"></audio>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="scripts/script.js"></script>
+</body>
+</html>
