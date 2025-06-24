@@ -1,6 +1,6 @@
 // ===== MAIN CONTROLLER =====
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize particles
+  // Initialize particles (ORIGINAL)
   particlesJS("particles-js", {
     particles: {
       number: { value: 80 },
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // DOM Elements
+  // DOM Elements (ORIGINAL)
   const envelopeScreen = document.getElementById('envelope-screen');
   const terminalScreen = document.getElementById('terminal-screen');
   const openBtn = document.getElementById('open-btn');
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const messages = document.querySelectorAll('.terminal-line');
   const music = document.getElementById('bgMusic');
 
-  // Open envelope handler (ORIGINAL ANIMATION)
+  // Open envelope handler (ORIGINAL ANIMATION - UNTOUCHED)
   openBtn.addEventListener('click', () => {
     music.play().catch(e => console.log("Audio blocked:", e));
     envelope.classList.add('open');
@@ -37,24 +37,40 @@ document.addEventListener('DOMContentLoaded', () => {
       envelopeScreen.style.opacity = '0';
       setTimeout(() => {
         terminalScreen.classList.add('active-screen');
-        startMessageSequence();
+        startMessageSequence(); // Calls updated timing function
       }, 1000);
     }, 1200);
   });
 
-  // Message sequence animation
+  // ===== UPDATED MESSAGE SEQUENCE =====
   function startMessageSequence() {
-    let delay = 1000;
+    // Timing control - ONLY CHANGE THESE VALUES:
+    const settings = {
+      initialDelay: 1500,    // 1.5s before first message
+      fadeDuration: 1500,    // 1.5s fade-in time per message
+      betweenMessages: 2500, // 2.5s pause after each message
+      finaleDelay: 10,      // 3s delay after last message
+    };
+
+    let delay = settings.initialDelay;
+
     messages.forEach((message, index) => {
       setTimeout(() => {
         message.classList.add('visible');
+        
+        // Last message handler with delayed image reveal
         if (index === messages.length - 1) {
           setTimeout(() => {
-            document.getElementById('photo-finale').classList.remove('hidden');
-          }, 2000);
+            const finale = document.getElementById('photo-finale');
+            finale.classList.remove('hidden'); // make it visible in layout
+            setTimeout(() => {
+              finale.classList.add('show'); // trigger the fade-in
+            }, 100);
+          }, settings.finaleDelay);
         }
       }, delay);
-      delay += 2000; // 2s between messages
+      
+      delay += settings.fadeDuration + settings.betweenMessages;
     });
   }
 });
