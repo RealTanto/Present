@@ -177,7 +177,7 @@ body {
 }
 #photo-finale {
   position: relative;
-  top: 175px;
+  top: 190px;
   opacity: 0;
   transition: opacity 1.5s ease-in;
 }
@@ -198,3 +198,4 @@ body {
   transition: opacity 1.5s ease-out, transform 1.5s ease-out !important;
 }
 
+  
