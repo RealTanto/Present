@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   openBtn.addEventListener('click', () => {
     music.play().catch(e => console.log("Audio blocked:", e));
     envelope.classList.add('open');
-    
+
     setTimeout(() => {
       envelopeScreen.style.opacity = '0';
       setTimeout(() => {
@@ -44,12 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===== UPDATED MESSAGE SEQUENCE =====
   function startMessageSequence() {
-    // Timing control - ONLY CHANGE THESE VALUES:
     const settings = {
       initialDelay: 1500,    // 1.5s before first message
       fadeDuration: 1500,    // 1.5s fade-in time per message
       betweenMessages: 2500, // 2.5s pause after each message
-      finaleDelay: 10,      // 3s delay after last message
+      finaleDelay: 10        // slight delay before showing image
     };
 
     let delay = settings.initialDelay;
@@ -57,20 +56,27 @@ document.addEventListener('DOMContentLoaded', () => {
     messages.forEach((message, index) => {
       setTimeout(() => {
         message.classList.add('visible');
-        
-        // Last message handler with delayed image reveal
+
+        // Last message triggers the image reveal
         if (index === messages.length - 1) {
           setTimeout(() => {
             const finale = document.getElementById('photo-finale');
-            finale.classList.remove('hidden'); // make it visible in layout
+            finale.classList.remove('hidden');
             setTimeout(() => {
-              finale.classList.add('show'); // trigger the fade-in
+              finale.classList.add('show');
             }, 100);
           }, settings.finaleDelay);
         }
       }, delay);
-      
-      delay += settings.fadeDuration + settings.betweenMessages;
+
+      // Custom pauses for key lines
+      if (message.textContent.includes("Read that again.")) {
+        delay += settings.fadeDuration + 3000; // +3s
+      } else if (message.textContent.includes("how loved and valuable you are")) {
+        delay += settings.fadeDuration + 4000; // +4s
+      } else {
+        delay += settings.fadeDuration + settings.betweenMessages;
+      }
     });
   }
 });
